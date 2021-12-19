@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\MediaController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -28,3 +29,4 @@ Route::middleware(['auth'])->group(function () {
     Route::view('home', 'home')->name('home');
     Route::match(['get', 'post'], '/upload', [MediaController::class, 'media'])->name('upload.media');
 });
+
