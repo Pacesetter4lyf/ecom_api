@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\MediaController;
+use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -30,3 +31,4 @@ Route::middleware(['auth'])->group(function () {
     Route::match(['get', 'post'], '/upload', [MediaController::class, 'media'])->name('upload.media');
 });
 
+Route::match(['get', 'post'], '/save_product', [ProductController::class, 'save_product'])->name('save_product');

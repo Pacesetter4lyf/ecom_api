@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Images;
 use Illuminate\Http\Request;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
@@ -46,16 +47,20 @@ class MediaController extends Controller
             //The show method returns the URL of the media file on Cloudinary
             $image_url = Cloudder::show(Cloudder::getPublicId()  );//, ["width" => $width, "height" => $height, "crop" => "scale", "quality" => 70, "secure" => "true"]
 
-            //In a situation where the user has already uploaded a file we could use the delete method to remove the media and upload a new one.
-            if ($public_id != null) {
-                $image_public_id_exist = User::select('public_id')->where('id', Auth::user()->id)->get();
-                Cloudder::delete($image_public_id_exist);
-            }
+                        // //In a situation where the user has already uploaded a file we could use the delete method to remove the media and upload a new one.
+                        // if ($public_id != null) {
+                        //     $image_public_id_exist = User::select('public_id')->where('id', Auth::user()->id)->get();
+                        //     Cloudder::delete($image_public_id_exist);
+                        // }
 
-            $user = User::find(Auth::user()->id);
-            $user->public_id = $public_id;
-            $user->avatar_url = $image_url;
-            $user->update();
+                        // $user = User::find(Auth::user()->id);
+                        // $user->public_id = $public_id;
+                        // $user->avatar_url = $image_url;
+                        // $user->update();
+            // dd($image_url);
+            $isFound = Images::where('public_id', $public_id)->get();
+            if($isFound == null) Images::create(['public_id' => $public_id, 'image_url' => $image_url]);
+
             return back()->with('success_msg', 'Media successfully updated!');
         } else {
             return view('media');
