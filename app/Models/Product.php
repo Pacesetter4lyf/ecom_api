@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Http\Controllers\UserController;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -29,5 +30,17 @@ class Product extends Model
         'discount',
         'brand',
         'code',
+        'type'
     ];
+
+
+    public function user_like()
+    {
+        $user = new UserController;
+        $user_id = $user->getAuthenticatedUser()->original['user']->id;
+        // return $user_id;
+        return $this->belongsToMany(User::class, 'favourites')->withPivot('isFavourite')->wherePivot('user_id', $user_id);//->as('subscriptions')
+    }
+
+
 }

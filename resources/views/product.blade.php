@@ -93,6 +93,7 @@
 
                 <input type="text" name='brand' placeholder="brand"   value="{{ old('brand') }}"></br>
                 <input type="text" name='code' placeholder="code"  value="{{ old('code') }}"></br>
+                <input type="text" name='type' placeholder="type"  value="{{ old('type') }}"></br>
 
 
             </div>

@@ -38,5 +38,10 @@ class CategoryTableSeeder extends Seeder
             'rank' => '4',
             'description' => 'Beautiful products for you'
         ]);
+        Category::create([
+            'name' => 'Cosmetics',
+            'rank' => '2',
+            'description' => 'Nice cosmetics product, you wont resist'
+        ]);
     }
 }

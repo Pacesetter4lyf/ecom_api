@@ -32,3 +32,4 @@ Route::middleware(['auth'])->group(function () {
 });
 
 Route::match(['get', 'post'], '/save_product', [ProductController::class, 'save_product'])->name('save_product');
+
